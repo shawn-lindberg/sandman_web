@@ -9,20 +9,28 @@ import typing
 import flask
 import werkzeug
 
-# Create a formatter.
-log_formatter = logging.Formatter(
-    "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
-)
 
-# Add file handler to the root logger.
-file_handler = logging.handlers.RotatingFileHandler(
-    "flask_app.log", backupCount=10, maxBytes=1000000
-)
-file_handler.setLevel(logging.WARNING)
-file_handler.setFormatter(log_formatter)
+def _setup_logging(base_dir: str) -> None:
+    """Set up logging."""
+    logger = logging.getLogger("sandman")
+    logger.setLevel(logging.DEBUG)
 
-logger = logging.getLogger()
-logger.addHandler(file_handler)
+    formatter = logging.Formatter(
+        "[%(asctime)s] %(name)s - %(levelname)s: %(message)s"
+    )
+
+    file_handler = logging.handlers.RotatingFileHandler(
+        base_dir + "sandman_web.log", backupCount=10, maxBytes=1000000
+    )
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.INFO)
+    stream_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(stream_handler)
 
 
 def create_app(
@@ -36,6 +44,8 @@ def create_app(
 
     # Get the base directory for the data files.
     base_dir = str(pathlib.Path.home()) + "/.sandman"
+
+    _setup_logging(base_dir)
 
     app.config.from_mapping(
         SECRET_KEY="dev",
