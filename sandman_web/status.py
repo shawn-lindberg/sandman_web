@@ -14,7 +14,35 @@ class _HealthType(enum.Enum):
 
 def _check_sandman_health() -> _HealthType:
     """Check the health of Sandman."""
-    return _HealthType.NOT_HEALTHY
+    hostname = os.environ.get("SANDMAN_MAIN_HOSTNAME", "localhost")
+    address = f"http://{hostname}:8525/health"
+
+    # Get the Sandman health response.
+    try:
+        response = requests.get(address)
+
+    except Exception:
+        return _HealthType.NOT_HEALTHY
+
+    if response.status_code != 200:
+        return _HealthType.NOT_HEALTHY
+
+    try:
+        response_json = response.json()
+
+    except Exception:
+        return _HealthType.NOT_HEALTHY
+
+    try:
+        health = response_json["health"]
+
+    except KeyError:
+        return _HealthType.NOT_HEALTHY
+
+    if health != "Healthy":
+        return _HealthType.NOT_HEALTHY
+
+    return _HealthType.HEALTHY
 
 
 def _check_rhasspy_health() -> _HealthType:
@@ -40,12 +68,12 @@ def _check_rhasspy_health() -> _HealthType:
 
 def is_healthy() -> bool:
     """Return whether the status is healthy overall."""
-    _sandman_health = _check_sandman_health()
+    sandman_health = _check_sandman_health()
     rhasspy_health = _check_rhasspy_health()
 
-    # For now we don't include the Sandman health check, because it needs to
-    # be reimplemented.
-    if rhasspy_health == _HealthType.HEALTHY:
+    if (sandman_health == _HealthType.HEALTHY) and (
+        rhasspy_health == _HealthType.HEALTHY
+    ):
         return True
 
     return False
@@ -58,15 +86,20 @@ status_bp = flask.Blueprint("status", __name__, template_folder="templates")
 def status_home() -> str:
     """Implement the route for the status page."""
     # Perform the Sandman related health checks.
-    _sandman_health = _check_sandman_health()
+    sandman_health = _check_sandman_health()
     rhasspy_health = _check_rhasspy_health()
 
     # Check that Sandman is in good health.
-    sandman_status = "Sandman health is unknown."
+    if sandman_health == _HealthType.HEALTHY:
+        sandman_status = "Sandman is healthy. ✔️"
+
+    else:
+        sandman_status = "Sandman is not healthy. ❌"
 
     # Check that Rhasspy is in good health.
     if rhasspy_health == _HealthType.HEALTHY:
         rhasspy_status = "Rhasspy is healthy. ✔️"
+
     else:
         rhasspy_status = "Rhasspy is not healthy. ❌"
 
