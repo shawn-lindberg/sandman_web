@@ -19,7 +19,7 @@ def _check_sandman_health() -> _HealthType:
 
     # Get the Sandman health response.
     try:
-        response = requests.get(address)
+        response = requests.get(address, timeout=(1, 1))
 
     except Exception:
         return _HealthType.NOT_HEALTHY
