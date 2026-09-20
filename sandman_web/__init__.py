@@ -97,6 +97,10 @@ def create_app(
 
     app.register_blueprint(status.status_bp)
 
+    from . import settings
+
+    app.register_blueprint(settings.blueprint)
+
     # Create global status variable.
     @app.context_processor
     def status_processor() -> dict[typing.Any, typing.Any]:
