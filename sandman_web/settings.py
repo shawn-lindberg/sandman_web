@@ -2,15 +2,10 @@
 
 import flask
 
-
 blueprint = flask.Blueprint("settings", __name__, template_folder="templates")
 
 
 @blueprint.route("/settings")
-def settings_page() -> str:
+def home() -> str:
     """Implement the route for the settings page."""
-
-    return flask.render_template(
-        "settings.html",
-        controls={}
-    )
+    return flask.render_template("settings.html", controls={})
