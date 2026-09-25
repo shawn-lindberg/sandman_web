@@ -1,0 +1,36 @@
+@import url(style.css);
+
+.sidebar {
+   color: black;
+   background-color: white;
+   width: 15%;
+   height: 75%;
+   position: fixed;
+   padding: 0;
+   margin: auto;
+   overflow-x: hidden;
+   border: 0.2rem solid black;
+   border-radius: 0.5rem;
+}
+
+.sidebar ul {
+   color: white;
+   background-color: gray;
+   list-style: none;
+   padding: 0.5rem;
+   margin: 0.25rem;
+   border-radius: 0.5rem;
+   display: block;
+}
+
+.sidebar ul:hover {
+   background-color: darkgray;
+}
+
+.settings {
+   margin-left: 16%;
+   margin-top: 0.25rem;
+   margin-right: 0.25rem;
+   margin-bottom: 0.25rem;
+   padding: 0.5rem;
+}

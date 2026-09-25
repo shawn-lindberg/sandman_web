@@ -2,7 +2,12 @@
 
 import flask
 
-blueprint = flask.Blueprint("settings", __name__, template_folder="templates")
+blueprint = flask.Blueprint(
+    "settings",
+    __name__,
+    template_folder="templates",
+    static_folder="static",
+)
 
 
 @blueprint.route("/settings")

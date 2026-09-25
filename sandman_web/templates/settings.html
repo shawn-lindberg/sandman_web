@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="{{ url_for('.static', filename='settings_style.css') }}">
+{% endblock %}
+
 {% block header %}
   <h1>{% block title %}Settings{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-<h2>Controls</h2>
+
+    <div class="sidebar">
+        <ul>
+            <li>Controls</li>
+        </ul>
+    </div>
+    <div class="settings">
+        Hello
+    </div>
 
 {% endblock %}
