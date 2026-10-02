@@ -1,5 +1,6 @@
 """Implements the settings webpage."""
 
+import operator
 import pathlib
 
 import flask
@@ -20,6 +21,9 @@ def home() -> str:
         str(flask.current_app.config["BASE_DIR"]) + "/controls"
     )
 
+    # Make a list of control configurations.
+    unsorted_controls = []
+
     for config_path in control_path.glob("*.ctl"):
         # Try loading the control config.
         config = controls.ControlConfig.parse_from_file(str(config_path))
@@ -27,4 +31,11 @@ def home() -> str:
         if config.is_valid() == False:
             continue
 
-    return flask.render_template("settings.html", controls={})
+        unsorted_controls.append(config.get_as_json())
+
+    # Sort them by name.
+    sorted_controls = sorted(
+        unsorted_controls, key=operator.itemgetter("name")
+    )
+
+    return flask.render_template("settings.html", controls=sorted_controls)
