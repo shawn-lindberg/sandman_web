@@ -16,7 +16,9 @@
         </ul>
     </div>
     <div class="settings">
-        Hello
+        {% for control in controls %}
+          <div class="control_config">{{ control['name'] }}</div>
+        {% endfor %}
     </div>
 
 {% endblock %}
