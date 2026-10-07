@@ -16,9 +16,14 @@
         </ul>
     </div>
     <div class="settings">
-        {% for control in controls %}
-          <div class="control_config">{{ control['name'] }}</div>
-        {% endfor %}
+        <form>
+          {% for control in controls %}
+            <div class="control_config">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" value="{{ control['name'] }}" readonly>
+            </div>
+          {% endfor %}
+        </form>
     </div>
 
 {% endblock %}

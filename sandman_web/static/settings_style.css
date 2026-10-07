@@ -34,3 +34,17 @@
    margin-bottom: 0.25rem;
    padding: 0.5rem;
 }
+
+.control_config {
+   padding: 0.5rem;
+   margin: 0.25rem;
+   border: 0.1rem solid black;
+   border-radius: 0.5rem;
+}
+
+input[readonly] {
+   background-color: transparent;
+   border: none;
+   outline: none;
+   cursor: default;
+}
