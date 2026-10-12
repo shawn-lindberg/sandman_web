@@ -1,5 +1,16 @@
 @import url(style.css);
 
+input, button {
+   font: inherit;
+}
+
+input[readonly] {
+   background-color: transparent;
+   border: none;
+   outline: none;
+   cursor: default;
+}
+
 .sidebar {
    color: black;
    background-color: white;
@@ -35,16 +46,48 @@
    padding: 0.5rem;
 }
 
+form {
+   display: grid;
+}
+
+label {
+   font-weight: bold;
+}
+
 .control_config {
    padding: 0.5rem;
    margin: 0.25rem;
    border: 0.1rem solid black;
    border-radius: 0.5rem;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
 }
 
-input[readonly] {
-   background-color: transparent;
-   border: none;
-   outline: none;
-   cursor: default;
+.control_name {
+   display: grid;
+   grid-column: 1 / span 1;
+}
+
+.control_moving {
+   display: grid;
+   grid-column: 2 / span 1;
+   grid-row: 1 / span 1;
+}
+
+.control_cool_down {
+   display: grid;
+   grid-column: 2 / span 1;
+   grid-row: 2 / span 1;
+}
+
+.control_up_line {
+   display: grid;
+   grid-column: 3 / span 1;
+   grid-row: 1 / span 1;
+}
+
+.control_down_line {
+   display: grid;
+   grid-column: 3 / span 1;
+   grid-row: 2 / span 1;
 }
