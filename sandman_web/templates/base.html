@@ -1,34 +1,38 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Sandman</title>
-{% block stylesheet %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-{% endblock %}
-<nav>
-  <img src="{{ url_for('static', filename='images/logo_wp_border.jpg')}}">
-  <h1>Sandman</h1>
-  <ul>
-      <li><a href="{{ url_for('reports.index') }}">Reports</a>
-  </ul>
-  <ul>
-    {% if health_issue is sameas true %}
-    <li><a class="blink-bg" href="{{ url_for('status.status_home') }}">💓Status</a></li>
-    {% else %}
-    <li><a href="{{ url_for('status.status_home') }}">💓Status</a></li>
-    {% endif %}
-  </ul>
-  <ul>
-      <li><a href="{{ url_for('settings.home') }}">Settings</a>
-  </ul>
-  <ul>
-    <li><a href="{{ url_for('rhasspy') }}" target="blank">Rhasspy</a></li>
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - Sandman</title>
+    {% block stylesheet %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% endblock %}
+  </head>
+  <nav>
+    <img src="{{ url_for('static', filename='images/logo_wp_border.jpg')}}">
+    <h1>Sandman</h1>
+    <ul>
+        <li><a href="{{ url_for('reports.index') }}">Reports</a>
+    </ul>
+    <ul>
+      {% if health_issue is sameas true %}
+      <li><a class="blink-bg" href="{{ url_for('status.status_home') }}">💓Status</a></li>
+      {% else %}
+      <li><a href="{{ url_for('status.status_home') }}">💓Status</a></li>
+      {% endif %}
+    </ul>
+    <ul>
+        <li><a href="{{ url_for('settings.home') }}">Settings</a>
+    </ul>
+    <ul>
+      <li><a href="{{ url_for('rhasspy') }}" target="blank">Rhasspy</a></li>
+    </ul>
+  </nav>
+  <body>
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    <div class="content">{% block content %}{% endblock %}</div>
+  </body>
+</html>
