@@ -12,36 +12,41 @@
 
   <div class="sidebar">
       <ul>
-          <li>Controls</li>
+        <li>Controls</li>
       </ul>
   </div>
   <div class="settings">
-      <form>
-        {% for control in controls %}
-          <div class="control_config">
-            <div class="control_name">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" value="{{ control['name'] }}" readonly>
-            </div>
-            <div class="control_moving">
-              <label for="moving_duration">Moving time (ms):</label> 
-              <input type="text" id="moving_duration" name="moving_duration" value="{{ control['movingDurationMS'] }}" readonly>
-            </div>
-            <div class="control_cool_down">
-              <label for="cool_down_duration">Cool down time (ms):</label> 
-              <input type="text" id="cool_down_duration" name="cool_down_duration" value="{{ control['coolDownDurationMS'] }}" readonly>
-            </div>
-            <div class="control_up_line">
-              <label for="up_gpio_line">Up GPIO line:</label> 
-              <input type="text" id="up_gpio_line" name="up_gpio_line" value="{{ control['upGPIOLine'] }}" readonly>
-            </div>
-            <div class="control_down_line">
-              <label for="down_gpio_line">Down GPIO line:</label> 
-              <input type="text" id="down_gpio_line" name="down_gpio_line" value="{{ control['downGPIOLine'] }}" readonly>
-            </div>
+    <form>
+      <div class="editbar">
+        <ul>
+          <li>Edit</li>
+        </ul>
+      </div>
+      {% for control in controls %}
+        <div class="control_config">
+          <div class="control_name">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ control['name'] }}" readonly>
           </div>
-        {% endfor %}
-      </form>
+          <div class="control_moving">
+            <label for="moving_duration">Moving time (ms):</label> 
+            <input type="text" id="moving_duration" name="moving_duration" value="{{ control['movingDurationMS'] }}" readonly>
+          </div>
+          <div class="control_cool_down">
+            <label for="cool_down_duration">Cool down time (ms):</label> 
+            <input type="text" id="cool_down_duration" name="cool_down_duration" value="{{ control['coolDownDurationMS'] }}" readonly>
+          </div>
+          <div class="control_up_line">
+            <label for="up_gpio_line">Up GPIO line:</label> 
+            <input type="text" id="up_gpio_line" name="up_gpio_line" value="{{ control['upGPIOLine'] }}" readonly>
+          </div>
+          <div class="control_down_line">
+            <label for="down_gpio_line">Down GPIO line:</label> 
+            <input type="text" id="down_gpio_line" name="down_gpio_line" value="{{ control['downGPIOLine'] }}" readonly>
+          </div>
+        </div>
+      {% endfor %}
+    </form>
   </div>
 
 {% endblock %}
