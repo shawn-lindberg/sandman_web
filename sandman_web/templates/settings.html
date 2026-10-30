@@ -19,7 +19,7 @@
     <form>
       <div class="editbar">
         <ul>
-          <li>Edit</li>
+          <li><a class="button" id="edit_button" onclick="ToggleEdit()" href="javascript:void();">Edit</a></li>
         </ul>
       </div>
       {% for control in controls %}
@@ -49,4 +49,34 @@
     </form>
   </div>
 
+  <script>
+    const editButton = document.getElementById("edit_button");
+    const settingsInputs = document.querySelectorAll(".settings input");
+
+    function ToggleEdit()
+    {
+      const isEdit = editButton.textContent == "Edit";
+
+      if (isEdit)
+      { 
+        editButton.textContent = "Cancel";
+      }
+      else
+      {
+        editButton.textContent = "Edit";
+      }
+
+      settingsInputs.forEach(input => 
+      {
+        if (isEdit)
+        {
+          input.removeAttribute("readonly");
+        }
+        else
+        {
+          input.setAttribute("readonly", true);
+        }
+      });
+    }
+  </script>
 {% endblock %}

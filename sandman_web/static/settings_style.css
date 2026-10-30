@@ -73,7 +73,7 @@ form {
    display: flex;
 }
 
-.editbar ul li {
+.editbar ul li a {
    color: white;
    background-color: gray;
    padding: 0.5rem;
@@ -82,7 +82,7 @@ form {
    display: block;
 }
 
-.editbar ul li:hover {
+.editbar ul li a:hover {
    background-color: darkgray;
 }
 
