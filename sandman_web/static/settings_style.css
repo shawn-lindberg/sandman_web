@@ -71,6 +71,7 @@ form {
 .editbar ul {
    list-style: none;
    display: flex;
+   justify-content: space-between;
 }
 
 .editbar ul li a {
@@ -84,6 +85,16 @@ form {
 
 .editbar ul li a:hover {
    background-color: darkgray;
+}
+
+#save_button {
+   background-color: darkgreen;
+   display: none;
+}
+
+#save_button:hover {
+   color: white;
+   background-color: green;
 }
 
 .control_config {

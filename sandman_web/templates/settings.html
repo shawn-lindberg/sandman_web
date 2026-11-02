@@ -20,6 +20,7 @@
       <div class="editbar">
         <ul>
           <li><a class="button" id="edit_button" onclick="ToggleEdit()" href="javascript:void();">Edit</a></li>
+          <li><a class="button" id="save_button" onclick="SaveSettings()" href="javascript:void();">Save</a></li>
         </ul>
       </div>
       {% for control in controls %}
@@ -51,6 +52,7 @@
 
   <script>
     const editButton = document.getElementById("edit_button");
+    const saveButton = document.getElementById("save_button");
     const settingsInputs = document.querySelectorAll(".settings input");
 
     function ToggleEdit()
@@ -60,10 +62,12 @@
       if (isEdit)
       { 
         editButton.textContent = "Cancel";
+        saveButton.style.display = "block";
       }
       else
       {
         editButton.textContent = "Edit";
+        saveButton.style.display = "none";
       }
 
       settingsInputs.forEach(input => 
