@@ -4,8 +4,15 @@ input, button {
    font: inherit;
 }
 
+input {
+   padding: 0.25rem;
+   border: 0.1rem solid black;
+   border-radius: 0.5rem;
+}
+
 input[readonly] {
    background-color: transparent;
+   padding: 0;
    border: none;
    outline: none;
    cursor: default;
@@ -107,29 +114,34 @@ form {
 }
 
 .control_name {
+   margin: 0 0.25rem;
    display: grid;
    grid-column: 1 / span 1;
 }
 
 .control_moving {
+   margin: 0 0.25rem;
    display: grid;
    grid-column: 2 / span 1;
    grid-row: 1 / span 1;
 }
 
 .control_cool_down {
+   margin: 0 0.25rem;
    display: grid;
    grid-column: 2 / span 1;
    grid-row: 2 / span 1;
 }
 
 .control_up_line {
+   margin: 0 0.25rem;
    display: grid;
    grid-column: 3 / span 1;
    grid-row: 1 / span 1;
 }
 
 .control_down_line {
+   margin: 0 0.25rem;
    display: grid;
    grid-column: 3 / span 1;
    grid-row: 2 / span 1;
