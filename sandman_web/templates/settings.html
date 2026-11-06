@@ -16,7 +16,7 @@
       </ul>
   </div>
   <div class="settings">
-    <form>
+    <form id="settings_form">
       <div class="editbar">
         <ul>
           <li><a class="button" id="edit_button" onclick="ToggleEdit()" href="javascript:void();">Edit</a></li>
@@ -54,6 +54,7 @@
     const editButton = document.getElementById("edit_button");
     const saveButton = document.getElementById("save_button");
     const settingsInputs = document.querySelectorAll(".settings input");
+    const settingsForm = document.getElementById("settings_form");
 
     function ToggleEdit()
     {
@@ -68,6 +69,8 @@
       {
         editButton.textContent = "Edit";
         saveButton.style.display = "none";
+        // Reset all of the form inputs.
+        settingsForm.reset();
       }
 
       settingsInputs.forEach(input => 
